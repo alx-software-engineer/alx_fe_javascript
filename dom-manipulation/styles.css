@@ -50,3 +50,18 @@ input:focus {
     background-color: gold;
     color: black;
 }
+
+.newQuoteContainer {
+    display: flex;
+    gap: 10px;
+}
+
+.text {
+    background-color: dodgerblue;
+    padding: 0.3em 0.5rem
+}
+
+.category {
+    background-color: gold;
+    padding: 0.3em 0.5rem
+}
