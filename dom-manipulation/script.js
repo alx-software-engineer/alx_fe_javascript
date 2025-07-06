@@ -1,5 +1,6 @@
 const quoteDisplay = document.querySelector("#quoteDisplay");
 const newQuoteBtn = document.querySelector("#newQuote");
+const newQuote = document.createElement("p");
 
 
 const quotes = [
