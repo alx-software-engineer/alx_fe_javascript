@@ -6,6 +6,7 @@ deleteBtnText.textContent = "Delete";
 deleteBtn.classList.add("btn", "deleteBtn");
 deleteBtn.appendChild(deleteBtnText);
 
+
 let quotes = [];
 // Load quotes from local-storage
 const savedQuotes = JSON.parse(localStorage.getItem("myQoutes"));
@@ -45,6 +46,7 @@ function createAddQuoteForm() {
     if (textInput.value && categoryInput.value) {
         quotes.push({text : textInput.value, category:categoryInput.value})
         localStorage.setItem("myQoutes", JSON.stringify(quotes));
+        quotes = JSON.parse(localStorage.getItem("myQoutes"));
         quoteDisplay.innerHTML = `<p>QUOTE : ${textInput.value}<p/> CATEGORY : ${categoryInput.value}`
         textInput.value = "";
         categoryInput.value = "";

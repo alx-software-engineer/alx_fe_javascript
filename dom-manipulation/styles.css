@@ -41,6 +41,10 @@ input:focus {
     background-color: red;
 }
 
+.exportBtn {
+    background-color: #d94040
+}
+
 .btn:hover {
     opacity: 0.8;
 }
