@@ -3,30 +3,38 @@ const newQuoteBtn = document.getElementById("newQuote");
 const deleteBtn = document.createElement("button");
 const deleteBtnText = document.createElement("span");
 deleteBtnText.textContent = "Delete";
+deleteBtn.classList.add("btn", "deleteBtn");
 deleteBtn.appendChild(deleteBtnText);
 
+let quotes = [];
+// Load quotes from local-storage
+const savedQuotes = JSON.parse(localStorage.getItem("myQoutes"));
 
-const quotes = [
-    {
-        text: "What a man can do a woman can do better.",
-        category: "Local"
-    },
+if (savedQuotes) {
+    quotes = savedQuotes;
+} else {
+    quotes = [
+        {
+            text: "What a man can do a woman can do better.",
+            category: "Local"
+        },
 
-    {
-        text: "Nothing good comes easy.",
-        category: "Global"
-    },
+        {
+            text: "Nothing good comes easy.",
+            category: "Global"
+        },
 
-    {
-        text: "A journey of a thousand miles, begins with a single step.",
-        category: "Global"
-    },
+        {
+            text: "A journey of a thousand miles, begins with a single step.",
+            category: "Global"
+        },
 
-    {
-        text: "Fear woman wey like you, only if you have owo!!.",
-        category: "Local"
-    }
-]
+        {
+            text: "Fear woman wey like you, only if you have owo!!.",
+            category: "Local"
+        }
+    ]
+}
 
 
 
@@ -36,7 +44,8 @@ function createAddQuoteForm() {
 
     if (textInput.value && categoryInput.value) {
         quotes.push({text : textInput.value, category:categoryInput.value})
-         quoteDisplay.innerHTML = `<p>QUOTE : ${textInput.value}<p/> CATEGORY : ${categoryInput.value}`
+        localStorage.setItem("myQoutes", JSON.stringify(quotes));
+        quoteDisplay.innerHTML = `<p>QUOTE : ${textInput.value}<p/> CATEGORY : ${categoryInput.value}`
         textInput.value = "";
         categoryInput.value = "";
     }
