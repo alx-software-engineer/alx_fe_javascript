@@ -1,5 +1,5 @@
 const quoteDisplay = document.querySelector("#quoteDisplay");
-const newQuoteBtn = document.querySelector("#newQuote");
+const newQuoteBtn = document.getElementById("newQuote");
 const deleteBtn = document.createElement("button");
 const deleteBtnText = document.createElement("span");
 deleteBtnText.textContent = "Delete";
