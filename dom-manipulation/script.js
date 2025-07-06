@@ -1,6 +1,9 @@
 const quoteDisplay = document.querySelector("#quoteDisplay");
 const newQuoteBtn = document.querySelector("#newQuote");
-const newQuote = document.createElement("p");
+const deleteBtn = document.createElement("button");
+const deleteBtnText = document.createElement("span");
+deleteBtnText.textContent = "Delete";
+deleteBtn.appendChild(deleteBtnText);
 
 
 const quotes = [
@@ -33,6 +36,9 @@ function createAddQuoteForm() {
 
     if (textInput.value && categoryInput.value) {
         quotes.push({text : textInput.value, category:categoryInput.value})
+         quoteDisplay.innerHTML = `<p>QUOTE : ${textInput.value}<p/> CATEGORY : ${categoryInput.value}`
+        textInput.value = "";
+        categoryInput.value = "";
     }
 }
 
