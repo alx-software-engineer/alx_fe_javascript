@@ -37,20 +37,7 @@ function showRandomQuote() {
 
 
 function displayRandomQuote(itemObject) {
-    const newQuoteContainer = document.createElement("div");
-    const newQuoteText = document.createElement("p");
-    const newQuoteCategory = document.createElement("p");
-
-    newQuoteContainer.classList.add("newQuoteContainer");
-    newQuoteText.classList.add("text")
-    newQuoteCategory.classList.add("category")
-    newQuoteText.textContent = `QUOTE : ${itemObject.text}`;
-    newQuoteCategory.textContent = `CATEGORY : ${itemObject.category}`;
-
-    // Add to container.
-    newQuoteContainer.appendChild(newQuoteText);
-    newQuoteContainer.appendChild(newQuoteCategory);
-    quoteDisplay.appendChild(newQuoteContainer);
+    quoteDisplay.innerHTML = `<p>QUOTE : ${itemObject.text}<p/> CATEGORY : ${itemObject.category}`;
 }
 
 newQuoteBtn.addEventListener("click", () => {
