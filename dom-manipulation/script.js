@@ -24,8 +24,19 @@ const quotes = [
     }
 ]
 
+
+
+function createAddQuoteForm() {
+    const textInput = document.querySelector("#newQuoteText");
+    const categoryInput = document.querySelector("#newQuoteCategory");
+
+    if (textInput.value && categoryInput.value) {
+        quotes.push({text : textInput.value, category:categoryInput.value})
+    }
+}
+
 function addQuote() {
-   
+   createAddQuoteForm()
 }
 
 
