@@ -4,7 +4,7 @@
 
 body {
     margin: 0;
-    padding: 0;
+    padding: 0 1rem;
     background-color: #e1e1e1;
 }
 
@@ -60,6 +60,11 @@ input:focus {
 
 .newQuoteContainer {
     display: flex;
+    width: fit-content;
+    margin: 1rem 0;
+    padding: 0.3rem 1rem;
+    background-color: #44ab44;
+    color: white;
     gap: 10px;
 }
 

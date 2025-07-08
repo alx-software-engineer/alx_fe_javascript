@@ -50,7 +50,9 @@ function createAddQuoteForm() {
         quoteDisplay.innerHTML = `<p>QUOTE : ${textInput.value}<p/> CATEGORY : ${categoryInput.value}`
         textInput.value = "";
         categoryInput.value = "";
-    }
+    } else (
+        alert("Both inputs needs to be filled first!!")
+    )
 }
 
 function addQuote() {
