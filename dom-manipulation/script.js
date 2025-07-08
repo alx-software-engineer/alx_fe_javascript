@@ -114,3 +114,14 @@ exportBtn.addEventListener("click", (e) => {
     URL.revokeObjectURL(url);
 })
 
+// Verify Quote file uploaded.
+function importFromJsonFile(event) {
+    const fileReader = new FileReader();
+    fileReader.onload = function(event) {
+      const importedQuotes = JSON.parse(event.target.result);
+      quotes.push(...importedQuotes);
+      saveQuotes();
+      alert('Quotes imported successfully!');
+    };
+    fileReader.readAsText(event.target.files[0]);
+  }
