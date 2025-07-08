@@ -8,10 +8,10 @@ deleteBtn.classList.add("btn", "deleteBtn");
 deleteBtn.appendChild(deleteBtnText);
 
 
-let quotes;
 // Load quotes from local-storage
+let quotes;
+const savedQuotes = JSON.parse(localStorage.getItem("myQuotes"));
 function loadSavedQuotes() {
-    const savedQuotes = JSON.parse(localStorage.getItem("myQuotes"));
 
     // check if quote is present.
     if (savedQuotes) {
@@ -97,9 +97,20 @@ newQuoteBtn.addEventListener("click", () => {
     displayRandomQuote(quote);
 })
 
+// Export Quotes.
 exportBtn.addEventListener("click", (e) => {
+    // Blob and Url
+    const blob = new Blob([JSON.stringify(quotes, null, 2)], {type : "application/json"});
+    const url = URL.createObjectURL(blob);
 
-    const Blob = new Blob([], {type : "application/json"});
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "My Quotes.json";
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link)
+    
+    URL.revokeObjectURL(url);
 })
-// Blob and Url
 
