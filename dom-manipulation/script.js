@@ -11,6 +11,7 @@ let quotes = [];
 // Load quotes from local-storage
 const savedQuotes = JSON.parse(localStorage.getItem("myQoutes"));
 
+// check if quote is present.
 if (savedQuotes) {
     quotes = savedQuotes;
 } else {
@@ -36,6 +37,9 @@ if (savedQuotes) {
         }
     ]
 }
+
+// Check for last displayed qoute.
+const lastDisplayedQuote = JSON.parse(sessionStorage.getItem("displayedQuote"));
 
 
 
@@ -69,10 +73,16 @@ function showRandomQuote() {
 
 function displayRandomQuote(itemObject) {
     quoteDisplay.innerHTML = `<p>QUOTE : ${itemObject.text}<p/> CATEGORY : ${itemObject.category}`;
+    savedToSession();
+}
+
+function savedToSession() {
+    sessionStorage.setItem("displayedQuote", JSON.stringify(quoteDisplay.innerHTML));
 }
 
 newQuoteBtn.addEventListener("click", () => {
     const quote  = showRandomQuote();
     displayRandomQuote(quote);
 })
+
 
