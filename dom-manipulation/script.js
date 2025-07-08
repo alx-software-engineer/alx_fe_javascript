@@ -1,42 +1,49 @@
 const quoteDisplay = document.querySelector("#quoteDisplay");
 const newQuoteBtn = document.getElementById("newQuote");
 const deleteBtn = document.createElement("button");
+const exportBtn = document.querySelector(".exportBtn");
 const deleteBtnText = document.createElement("span");
 deleteBtnText.textContent = "Delete";
 deleteBtn.classList.add("btn", "deleteBtn");
 deleteBtn.appendChild(deleteBtnText);
 
 
-let quotes = [];
+let quotes;
 // Load quotes from local-storage
-const savedQuotes = JSON.parse(localStorage.getItem("myQoutes"));
+function loadSavedQuotes() {
+    const savedQuotes = JSON.parse(localStorage.getItem("myQuotes"));
 
-// check if quote is present.
-if (savedQuotes) {
-    quotes = savedQuotes;
-} else {
-    quotes = [
-        {
-            text: "What a man can do a woman can do better.",
-            category: "Local"
-        },
+    // check if quote is present.
+    if (savedQuotes) {
+        quotes = savedQuotes;
+    } else {
+        quotes = [
+            {
+                text: "What a man can do a woman can do better.",
+                category: "Local"
+            },
 
-        {
-            text: "Nothing good comes easy.",
-            category: "Global"
-        },
+            {
+                text: "Nothing good comes easy.",
+                category: "Global"
+            },
 
-        {
-            text: "A journey of a thousand miles, begins with a single step.",
-            category: "Global"
-        },
+            {
+                text: "A journey of a thousand miles, begins with a single step.",
+                category: "Global"
+            },
 
-        {
-            text: "Fear woman wey like you, only if you have owo!!.",
-            category: "Local"
-        }
-    ]
+            {
+                text: "Fear woman wey like you, only if you have owo!!.",
+                category: "Local"
+            }
+        ]
+
+        localStorage.setItem("myQuotes", JSON.stringify(quotes));
+    }
 }
+
+loadSavedQuotes();
 
 // Check for last displayed qoute.
 const lastDisplayedQuote = JSON.parse(sessionStorage.getItem("displayedQuote"));
@@ -52,9 +59,10 @@ function createAddQuoteForm() {
 
     if (textInput.value && categoryInput.value) {
         quotes.push({text : textInput.value, category:categoryInput.value})
-        localStorage.setItem("myQoutes", JSON.stringify(quotes));
-        quotes = JSON.parse(localStorage.getItem("myQoutes"));
+        localStorage.setItem("myQuotes", JSON.stringify(quotes));
+        quotes = JSON.parse(localStorage.getItem("myQuotes"));
         quoteDisplay.innerHTML = `<p>QUOTE : ${textInput.value}<p/> CATEGORY : ${categoryInput.value}`
+        savedToSession();
         textInput.value = "";
         categoryInput.value = "";
     } else (
@@ -68,6 +76,7 @@ function addQuote() {
 
 
 function showRandomQuote() {
+    loadSavedQuotes();
     const randomNumber = Math.floor(Math.random() * (quotes.length));
     const selectedQuote = quotes[randomNumber];
     return selectedQuote;
@@ -88,4 +97,9 @@ newQuoteBtn.addEventListener("click", () => {
     displayRandomQuote(quote);
 })
 
+exportBtn.addEventListener("click", (e) => {
+
+    const Blob = new Blob([], {type : "application/json"});
+})
+// Blob and Url
 
