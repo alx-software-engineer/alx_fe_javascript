@@ -100,7 +100,7 @@ newQuoteBtn.addEventListener("click", () => {
 // Export/Download Quotes.
 exportBtn.addEventListener("click", (e) => {
     // Blob and Url
-    const blob = new Blob([JSON.stringify(quotes, null, 2)], {type : "application/json", "Blob"});
+    const blob = new Blob([JSON.stringify(quotes, null, 2)], {type : "application/json"});
     const url = URL.createObjectURL(blob);
 
     const link = document.createElement("a");
