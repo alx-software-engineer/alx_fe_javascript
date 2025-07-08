@@ -97,7 +97,7 @@ newQuoteBtn.addEventListener("click", () => {
     displayRandomQuote(quote);
 })
 
-// Export Quotes.
+// Export/Download Quotes.
 exportBtn.addEventListener("click", (e) => {
     // Blob and Url
     const blob = new Blob([JSON.stringify(quotes, null, 2)], {type : "application/json"});

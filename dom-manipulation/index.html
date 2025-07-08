@@ -19,5 +19,8 @@
         <input type="text" id="newQuoteCategory" placeholder="Enter quote category" />
         <button onclick="addQuote()" class="btn add-qouteBtn">Add Quote</button>
     </div>
+
+    <h3>You can upload your Quote Below!</h3>
+    <input type="file" id="importFile" accept=".json" onchange="importFromJsonFile(event)" />
 </body>
 </html>
