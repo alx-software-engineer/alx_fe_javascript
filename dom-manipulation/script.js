@@ -40,6 +40,9 @@ if (savedQuotes) {
 
 // Check for last displayed qoute.
 const lastDisplayedQuote = JSON.parse(sessionStorage.getItem("displayedQuote"));
+if (lastDisplayedQuote) {
+    quoteDisplay.innerHTML = lastDisplayedQuote;
+}
 
 
 
