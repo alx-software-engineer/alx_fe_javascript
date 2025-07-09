@@ -10,15 +10,17 @@
 <body>
     <h1>Dynamic Quote Generator</h1>
     <div id="quoteDisplay" class="newQuoteContainer">Select your favourite category below, and generate Dynamic Quote (HERE!)</div>
+
+    <!-- Categories -->
    <select id="categoryFilter" onchange="filterQuotes()">
     <option value="" disabled selected>Select your category</option>
     <option value="all">All Categories</option>
-    <option value="all">Global</option>
-    <option value="all">Local</option>
   </select>
+  
     <button id="newQuote" class="btn show-quoteBtn">Show New Quote</button>
     <button class="btn exportBtn">Export Quotes</button>
 
+    <!-- Add Quote and category -->
     <div class="new-quote">
         <h2>Add Your Own Quote and Category</h2>
         <input type="text" id="newQuoteText" placeholder="Enter a new quote" />
@@ -26,6 +28,7 @@
         <button onclick="addQuote()" class="btn add-qouteBtn">Add Quote</button>
     </div>
 
+    <!-- Upload Quote -->
     <h3>You can upload your Quote Below!</h3>
     <input type="file" id="importFile" accept=".json" onchange="importFromJsonFile(event)" />
 </body>

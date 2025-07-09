@@ -3,6 +3,7 @@ const newQuoteBtn = document.getElementById("newQuote");
 const deleteBtn = document.createElement("button");
 const exportBtn = document.querySelector(".exportBtn");
 const deleteBtnText = document.createElement("span");
+const categoryFilter = document.getElementById("categoryFilter");
 deleteBtnText.textContent = "Delete";
 deleteBtn.classList.add("btn", "deleteBtn");
 deleteBtn.appendChild(deleteBtnText);
@@ -82,7 +83,6 @@ function showRandomQuote() {
     return selectedQuote;
 }
 
-
 function displayRandomQuote(itemObject) {
     quoteDisplay.innerHTML = `<p>QUOTE : ${itemObject.text}<p/> CATEGORY : ${itemObject.category}`;
     savedToSession();
@@ -124,4 +124,13 @@ function importFromJsonFile(event) {
       alert('Quotes imported successfully!');
     };
     fileReader.readAsText(event.target.files[0]);
+  }
+
+  // filter category
+  function populateCategories(quote) {
+    let presentCategory = quote.map(item => item.category.toUpperCase());
+    const uniqueCategories = [...new Set(presentCategory)];
+
+    
+    
   }
