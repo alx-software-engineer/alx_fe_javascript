@@ -46,6 +46,7 @@ function loadSavedQuotes() {
 
 loadSavedQuotes();
 populateCategories(quotes);
+let quotesTodisplayed = [];
 
 // Check for last displayed qoute.
 const lastDisplayedQuote = JSON.parse(sessionStorage.getItem("displayedQuote"));
@@ -79,10 +80,16 @@ function addQuote() {
 
 
 function showRandomQuote() {
-    loadSavedQuotes();
-    const randomNumber = Math.floor(Math.random() * (quotes.length));
-    const selectedQuote = quotes[randomNumber];
-    return selectedQuote;
+    if (categoryFilter.value === "all") {
+        loadSavedQuotes();
+        const randomNumber = Math.floor(Math.random() * (quotes.length));
+        const selectedQuote = quotes[randomNumber];
+        return selectedQuote;
+    } else {
+        const randomNumber = Math.floor(Math.random() * (quotesTodisplayed.length));
+        return randomNumber;
+    }
+    
 }
 
 function displayRandomQuote(itemObject) {
@@ -95,8 +102,14 @@ function savedToSession() {
 }
 
 newQuoteBtn.addEventListener("click", () => {
-    const quote  = showRandomQuote();
-    displayRandomQuote(quote);
+    const result  = showRandomQuote();
+
+    if (categoryFilter.value === "all") {
+        displayRandomQuote(result);
+    } else {
+         quoteDisplay.innerHTML = `<p>QUOTE : ${quotesTodisplayed[result].text}<p/> CATEGORY : ${quotesTodisplayed[result].category}`;
+    }
+   
 })
 
 // Export/Download Quotes.
@@ -128,7 +141,7 @@ function importFromJsonFile(event) {
     fileReader.readAsText(event.target.files[0]);
   }
 
-  // filter category
+  // Populate categories
   function populateCategories(quote) {
     let presentCategory = quote.map(item => item.category.toUpperCase());
     const uniqueCategories = [...new Set(presentCategory)];
@@ -142,4 +155,21 @@ function importFromJsonFile(event) {
         
     }
     
+  }
+
+  // Filter categories
+  function filterQuotes() {
+    const selectedCategory = categoryFilter.value;
+    const selectedCategoryQuotes = [];
+
+    if (selectedCategory !== "all") {
+        quotes.forEach((item) => {
+        if (item.category.toUpperCase() === selectedCategory) {
+            selectedCategoryQuotes.push(item);
+        }  
+    })
+    quotesTodisplayed = selectedCategoryQuotes;
+    } else {
+        return quotes;
+    }
   }
