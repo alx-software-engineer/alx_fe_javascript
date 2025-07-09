@@ -45,6 +45,7 @@ function loadSavedQuotes() {
 }
 
 loadSavedQuotes();
+populateCategories(quotes);
 
 // Check for last displayed qoute.
 const lastDisplayedQuote = JSON.parse(sessionStorage.getItem("displayedQuote"));
@@ -62,6 +63,7 @@ function createAddQuoteForm() {
         quotes.push({text : textInput.value, category:categoryInput.value})
         localStorage.setItem("myQuotes", JSON.stringify(quotes));
         quotes = JSON.parse(localStorage.getItem("myQuotes"));
+        populateCategories(quotes);
         quoteDisplay.innerHTML = `<p>QUOTE : ${textInput.value}<p/> CATEGORY : ${categoryInput.value}`
         savedToSession();
         textInput.value = "";
@@ -130,7 +132,14 @@ function importFromJsonFile(event) {
   function populateCategories(quote) {
     let presentCategory = quote.map(item => item.category.toUpperCase());
     const uniqueCategories = [...new Set(presentCategory)];
+    const categoryLength = uniqueCategories.length
+    for (let i = 0; i < categoryLength; i++) {
+        const option = document.createElement("option");
+        option.value = uniqueCategories[i];
+        option.textContent = uniqueCategories[i];
 
-    
+        categoryFilter.appendChild(option);
+        
+    }
     
   }
