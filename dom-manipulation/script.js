@@ -173,3 +173,11 @@ function importFromJsonFile(event) {
         return quotes;
     }
   }
+
+  async function fetchQuotesFromServer() {
+    try {
+       const response = await fetch("https://jsonplaceholder.typicode.com/posts/1");
+    } catch (error) {
+        
+    }
+  }
