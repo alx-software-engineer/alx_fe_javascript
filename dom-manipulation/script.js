@@ -142,8 +142,8 @@ function importFromJsonFile(event) {
   }
 
   // Populate categories
-  function populateCategories(quote) {
-    let presentCategory = quote.map(item => item.category.toUpperCase());
+  function populateCategories(myArray) {
+    let presentCategory = myArray.map(item => item.category.toUpperCase());
     const uniqueCategories = [...new Set(presentCategory)];
     const categoryLength = uniqueCategories.length
     for (let i = 0; i < categoryLength; i++) {
@@ -151,8 +151,7 @@ function importFromJsonFile(event) {
         option.value = uniqueCategories[i];
         option.textContent = uniqueCategories[i];
 
-        categoryFilter.appendChild(option);
-        
+        categoryFilter.appendChild(option); 
     }
     
   }
@@ -176,22 +175,22 @@ function importFromJsonFile(event) {
 
   async function fetchQuotesFromServer() {
     try {
-        const response = await fetch("https://jsonplaceholder.typicode.com/posts/1", {
-        method : "POST",
-        body : JSON.stringify(quotes),
-        headers : {
-            'Content-Type' : 'application/json; charset=UTF-8',
-        },
-       });
+        const response = await fetch("https://jsonplaceholder.typicode.com/posts/1");
 
         if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-        }
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
 
-        // Get the server's response
-        const responseData = await response.json();
+    // Get the server's response
+    const responseData = await response.json();
+    return responseData;
 
     } catch (error) {
-        alert('Error creating post:', error);
+         return `Server Error ${error}`;
     }
+  }
+
+  function syncQuotes() {
+    const serverData = fetchQuotesFromServer()
+    localStorage.setItem("myQuotes", JSON.stringify(serverData));
   }
