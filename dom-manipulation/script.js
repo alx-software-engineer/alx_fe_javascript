@@ -209,7 +209,10 @@ function importFromJsonFile(event) {
 
         // Server's response
         const responseData = await response.json();
-        return responseData;
+        if (responseData) {
+            const serverResponseStatus =  document.createElement("p");
+            serverResponseStatus.textContent = "Quotes synced with server!";
+        }
 
         } catch (error) {
             return `Server Error ${error}`;
