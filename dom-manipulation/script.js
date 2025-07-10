@@ -216,7 +216,9 @@ function importFromJsonFile(event) {
         }
     }
 
-  function syncQuotes() {
-    const serverData = fetchQuotesFromServer()
-    localStorage.setItem("myQuotes", JSON.stringify(serverData));
-  }
+    function syncQuotes() {
+        const serverData = fetchQuotesFromServer()
+        localStorage.setItem("myQuotes", JSON.stringify(serverData));
+    }
+
+    setInterval(syncQuotes, 10000);
