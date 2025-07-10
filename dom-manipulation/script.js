@@ -173,22 +173,48 @@ function importFromJsonFile(event) {
     }
   }
 
-  async function fetchQuotesFromServer() {
+    // Post Quotes to Server
+    async function postQuotesToServer() {
     try {
-        const response = await fetch("https://jsonplaceholder.typicode.com/posts/1");
+        const response = await fetch("https://jsonplaceholder.typicode.com/posts/1", {
+        method: 'POST',
+        body: JSON.stringify(quotes),
+        headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+        },
+        });
 
         if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    // Get the server's response
+    // Server's response
     const responseData = await response.json();
     return responseData;
 
     } catch (error) {
-         return `Server Error ${error}`;
+         return `Data Not Submitted ${error}`;
     }
   }
+
+
+    // Fetch Qoutes from server
+    async function fetchQuotesFromServer() {
+        try {
+            const response = await fetch("https://jsonplaceholder.typicode.com/posts/1");
+
+            if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        // Server's response
+        const responseData = await response.json();
+        return responseData;
+
+        } catch (error) {
+            return `Server Error ${error}`;
+        }
+    }
 
   function syncQuotes() {
     const serverData = fetchQuotesFromServer()
