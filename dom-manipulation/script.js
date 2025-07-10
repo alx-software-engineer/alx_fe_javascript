@@ -176,8 +176,22 @@ function importFromJsonFile(event) {
 
   async function fetchQuotesFromServer() {
     try {
-       const response = await fetch("https://jsonplaceholder.typicode.com/posts/1");
+        const response = await fetch("https://jsonplaceholder.typicode.com/posts/1", {
+        method : "POST",
+        body : JSON.stringify(quotes),
+        headers : {
+            'Content-type' : 'application/json; charset=UTF-8',
+        },
+       });
+
+        if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        // Get the server's response
+        const responseData = await response.json();
+
     } catch (error) {
-        
+        alert('Error creating post:', error);
     }
   }
